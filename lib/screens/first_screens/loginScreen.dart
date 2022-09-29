@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ug_blood_donate/screens/first_screens/ForgotPassword.dart';
 //import '../../home.dart';
 import 'register.dart';
+import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -271,10 +272,10 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         });
         Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Request_page(),)
-        );
+            context,
+            MaterialPageRoute(
+              builder: (context) => Request_page(),
+            ));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           Fluttertoast.showToast(msg: 'No user found for that email');

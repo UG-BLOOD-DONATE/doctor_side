@@ -9,7 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ug_blood_donate/home.dart';
+//import 'package:ug_blood_donate/home.dart';
 import 'package:ug_blood_donate/models/user_model.dart';
 import 'package:ug_blood_donate/screens/first_screens/loginScreen.dart';
 

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ug_blood_donate/screens/create_event.dart';
+import 'package:ug_blood_donate/screens/onboarding_screens.dart';
 //import 'package:ug_blood_donate/Doctor_side/screen/create_event.dart';
 
 void main() {
@@ -38,7 +39,7 @@ class _Request_pageState extends State<Request_page> {
               padding: const EdgeInsets.all(20.0),
               child: Column(
                 children: [
-                  const ListTile(
+                  ListTile(
                     title: Text(
                       '  Hello! Nusrat.',
                       style: TextStyle(
@@ -52,13 +53,13 @@ class _Request_pageState extends State<Request_page> {
                     trailing: IconButton(
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
-              prefs.setBool('showHome', false);
-                          Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => OnboardingScreen(),
-                  ),
-                );
+                        prefs.setBool('showHome', false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const OnboardingScreen(),
+                          ),
+                        );
                       },
                       icon: const Icon(Icons.logout),
                     ),
@@ -416,7 +417,7 @@ class _Request_pageState extends State<Request_page> {
                             Image.asset('images/dice1.png')
                           ],
                         ),
-                        Divider(),
+                        const Divider(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

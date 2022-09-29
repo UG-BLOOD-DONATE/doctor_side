@@ -1,18 +1,24 @@
-import 'package:image/image.dart';
+//import 'package:image/image.dart';
+import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
+import 'package:ug_blood_donate/screens/first_screens/loginScreen.dart';
+import 'package:ug_blood_donate/screens/first_screens/register.dart';
 
 class MyApp extends StatelessWidget {
   final bool showHome;
-  const MyApp({Key? key, required this.showHome,}): super(key: key);
+  const MyApp({
+    Key? key,
+    required this.showHome,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: showHome ? Request_page() :OnboardingScreen(),
+      home: showHome ? Request_page() : OnboardingScreen(),
     );
   }
 }
@@ -24,35 +30,253 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  final controller = PageController();
+  final controller = LiquidController();
   bool isLastPage = false;
 
   @override
-  void dispose() {
-    controller.dispose();
+  // void dispose() {
+  //   controller.dispose();
 
-    super.dispose();
-  }
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(bottom: 80),
-        child: PageView(
-          onPageChanged: (index) {
-            setState(() => isLastPage = index == 2);
-          },
-          controller: controller,
+        child: Stack(
           children: [
-            Container(
-              color: Colors.green.shade100,
-            ),
-            Container(
-              color: Colors.red,
-            ),
-            Container(
-              color: Colors.red,
+            LiquidSwipe(
+              enableSideReveal: true,
+              slideIconWidget: const Icon(
+                Icons.arrow_back_ios,
+                color: Colors.white,
+              ),
+              onPageChangeCallback: (index) {
+                setState(() => isLastPage =
+                    controller.currentPage == 3); //=> isLastPage = index == 2
+              },
+              liquidController: controller,
+              pages: [
+                Container(
+                  color: Color.fromARGB(255, 239, 20, 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/Vector.png',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      Text(
+                        'Find Blood Donors',
+                        style: TextStyle(
+                          color: Colors.teal.shade700,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      Text(
+                        'Locate a blood donor nearby',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Color.fromARGB(255, 18, 8, 203),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/rafiki.png',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      Text(
+                        'Find Blood Donors',
+                        style: TextStyle(
+                          color: Colors.teal.shade700,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      Text(
+                        'Locate a blood donor nearby',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Color.fromARGB(255, 8, 203, 34),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 34,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/ugblood donate.png',
+                                width: 300,
+                                height: 350,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                'You can donate for ones in need and  ',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.grey[90]),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'request blood if you need. ',
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.grey[900]),
+                              )
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 60,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 300,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                        return const LoginScreen();
+                                      }),
+                                    );
+                                  },
+                                  child: const Text(
+                                    'LOG IN',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  style: ButtonStyle(
+                                    overlayColor: MaterialStateProperty
+                                        .resolveWith<Color?>(
+                                            (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.focused))
+                                        return Colors.pink[300];
+                                      if (states
+                                          .contains(MaterialState.hovered))
+                                        return Colors.pink[300];
+                                      if (states
+                                          .contains(MaterialState.pressed))
+                                        return Colors.pink[300];
+                                      return null; // Defer to the widget's default.
+                                    }),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.pink),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 300,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) {
+                                        return const RegisterPage();
+                                      }),
+                                    );
+                                  },
+                                  child: const Text(
+                                    'REGISTER',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  style: ButtonStyle(
+                                    overlayColor: MaterialStateProperty
+                                        .resolveWith<Color?>(
+                                            (Set<MaterialState> states) {
+                                      if (states
+                                          .contains(MaterialState.focused))
+                                        return Colors.pink[300];
+                                      if (states
+                                          .contains(MaterialState.hovered))
+                                        return Colors.pink[300];
+                                      if (states
+                                          .contains(MaterialState.pressed))
+                                        return Colors.pink[300];
+                                      return null; // Defer to the widget's default.
+                                    }),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.pink),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(25),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -60,8 +284,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       bottomSheet: isLastPage
           ? TextButton(
               onPressed: () async {
-              final prefs = await SharedPreferences.getInstance();
-              prefs.setBool('showHome', true);
+                final prefs = await SharedPreferences.getInstance();
+                prefs.setBool('showHome', true);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -73,7 +297,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 'Get started',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 22,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -89,31 +313,46 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     TextButton(
                       child: const Text('SKIP'),
                       onPressed: () {
-                        controller.jumpToPage(2);
+                        controller.jumpToPage(page: 2);
                       },
                     ),
-                    Center(
-                      child: SmoothPageIndicator(
-                        controller: controller,
-                        count: 3,
-                        effect: WormEffect(
-                          spacing: 16,
-                          dotColor: Colors.black26,
-                          activeDotColor: Colors.teal.shade700,
-                        ),
-                        onDotClicked: (index) => controller.animateToPage(
-                          index,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
-                        ),
+                    AnimatedSmoothIndicator(
+                      activeIndex: controller.currentPage,
+                      count: 3,
+                      effect: WormEffect(
+                        spacing: 16,
+                        dotColor: Colors.black26,
+                        activeDotColor: Colors.teal.shade700,
+                      ),
+                      onDotClicked: (index) => controller.animateToPage(
+                        page: index,
                       ),
                     ),
+                    // Center(
+                    //   child: SmoothPageIndicator(
+                    //     controller: controller,
+                    //     count: 3,
+                    //   effect: WormEffect(
+                    //     spacing: 16,
+                    //     dotColor: Colors.black26,
+                    //     activeDotColor: Colors.teal.shade700,
+                    //   ),
+                    //   onDotClicked: (index) => controller.animateToPage(
+                    //     index,
+                    //     duration: const Duration(milliseconds: 500),
+                    //     curve: Curves.easeInOut,
+                    //   ),
+                    // ),
+                    // ),
                     TextButton(
                       child: const Text('NEXT'),
                       onPressed: () {
-                        controller.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.easeInOut,
+                        final page = controller.currentPage + 1;
+                        controller.animateToPage(
+                          page: page > 4 ? 0 : page,
+                          duration: 300,
+                          // duration: const Duration(milliseconds: 500),
+                          // curve: Curves.easeInOut,
                         );
                       },
                     ),

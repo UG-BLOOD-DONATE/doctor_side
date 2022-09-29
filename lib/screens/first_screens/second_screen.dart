@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ug_blood_donate/home.dart';
+//import 'package:ug_blood_donate/home.dart';
 import 'package:ug_blood_donate/screens/first_screens/LoginRegister.dart';
+import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
 import 'package:ug_blood_donate/screens/first_screens/third_sreen.dart';
 
 class Onboarding extends StatefulWidget {
@@ -24,9 +25,7 @@ class _OnboardingState extends State<Onboarding> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => Home(
-              currentUser: user,
-            ),
+            builder: (context) => Request_page(),
           ),
         );
       }

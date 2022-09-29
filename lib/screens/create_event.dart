@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ug_blood_donate/home.dart';
 
 const String myhomepageRoute = '/';
 const String myprofileRoute = 'profile';
@@ -323,7 +322,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                   //
+                    //
                     // const SizedBox(
                     //   height: 20,
                     // ),
@@ -375,7 +374,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             'hospital': hospital.text,
                             'date': date.text,
                             'contact': contact.text,
-                           // 'note': note.text
+                            // 'note': note.text
                           }).then((value) => Fluttertoast.showToast(
                                       msg: "Event created successfully")
                                   .catchError((e) {
@@ -390,14 +389,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: const Center(child: Text("ADD EVENT")),
                       style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.pink),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.pink),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
                           ),
                         ),
+                      ),
                     ),
                   ],
                 ),

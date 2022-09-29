@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ug_blood_donate/screens/first_screens/ForgotPassword.dart';
-import '../../home.dart';
+//import '../../home.dart';
 import 'register.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -273,10 +273,7 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => Home(
-              currentUser: currentUser,
-            ),
-          ),
+            builder: (context) => Request_page(),
         );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {

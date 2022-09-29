@@ -3,9 +3,21 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
 
+class MyApp extends StatelessWidget {
+  final bool showHome;
+  const MyApp({Key? key, required this.showHome,}): super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: showHome ? Request_page() :nboardingScreen(),
+    );
+  }
+}
+
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
-
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
@@ -47,6 +59,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       bottomSheet: isLastPage
           ? TextButton(
               onPressed: () async {
+              final prefs = await SharedPreferences.getInstance();
+              prefs.setBool('showHome', true);
                 Navigator.push(
                   context,
                   MaterialPageRoute(

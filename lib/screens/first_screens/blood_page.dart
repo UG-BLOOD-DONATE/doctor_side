@@ -48,7 +48,19 @@ class _Request_pageState extends State<Request_page> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
-                    trailing: Icon(Icons.notification_add, size: 40.0),
+                    trailing: IconButton(
+                      onPressed: () async {
+                        final prefs = await SharedPreferences.getInstance();
+              prefs.setBool('showHome', false);
+                          Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => OnboardingScreen(),
+                  ),
+                );
+                      },
+                      icon: const Icon(Icons.logout),
+                    ),
                   ),
                   const Divider(),
                   const Divider(),

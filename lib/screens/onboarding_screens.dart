@@ -1,4 +1,5 @@
 import 'package:image/image.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: showHome ? Request_page() :nboardingScreen(),
+      home: showHome ? Request_page() :OnboardingScreen(),
     );
   }
 }

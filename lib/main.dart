@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_blood_donate/screens/first_screens/splash_screen.dart';
 import 'package:ug_blood_donate/screens/onboarding_screens.dart';
@@ -11,5 +12,5 @@ Future<void> main() async {
   );
   final prefs = await SharedPreferences.getInstance();
   final showHome = prefs.getBool('showHome') ?? false;
-  runApp(MaterialApp(home: OnboardingScreen(showHome: showHome)));
+  runApp(MaterialApp(home: MyApp(showHome: showHome)));
 }

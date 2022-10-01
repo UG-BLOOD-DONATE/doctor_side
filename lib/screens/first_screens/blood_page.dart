@@ -1,9 +1,15 @@
 //import 'package:alan_voice/alan_voice.dart';
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ug_blood_donate/components/custom_card.dart';
 import 'package:ug_blood_donate/screens/create_event.dart';
+import 'package:ug_blood_donate/screens/graph.dart';
 import 'package:ug_blood_donate/screens/onboarding_screens.dart';
+import 'package:ug_blood_donate/screens/qr_scanner.dart';
+import 'package:ug_blood_donate/screens/report_form.dart';
+import 'package:ug_blood_donate/utils/firebase.dart';
 //import 'package:ug_blood_donate/Doctor_side/screen/create_event.dart';
 
 void main() {
@@ -52,6 +58,7 @@ class _Request_pageState extends State<Request_page> {
                     ),
                     trailing: IconButton(
                       onPressed: () async {
+                        firebaseAuth.signOut();
                         final prefs = await SharedPreferences.getInstance();
                         prefs.setBool('showHome', false);
                         Navigator.push(
@@ -266,7 +273,14 @@ class _Request_pageState extends State<Request_page> {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: Card(
+                          child: CustomCard(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                return ChartApp();
+                              }),
+                            ),
                             child: Container(
                               decoration: BoxDecoration(
                                 //color: const Color.fromARGB(255, 243, 248, 247),
@@ -340,36 +354,45 @@ class _Request_pageState extends State<Request_page> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Card(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                //color: const Color.fromARGB(255, 243, 248, 247),
-                                borderRadius: BorderRadius.circular(50.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color:
-                                        const Color.fromARGB(255, 255, 254, 254)
-                                            .withOpacity(0.5),
-                                    spreadRadius: 20,
-                                    blurRadius: 7,
-                                    offset: const Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 32.0, horizontal: 8.0),
-                              child: Column(
-                                children: const [
-                                  Icon(Icons.report,
-                                      color: Colors.red, size: 40.0),
-                                  Text(
-                                    'Report',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                return qrscanner();
+                              }),
+                            ),
+                            child: Card(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  //color: const Color.fromARGB(255, 243, 248, 247),
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color.fromARGB(
+                                              255, 255, 254, 254)
+                                          .withOpacity(0.5),
+                                      spreadRadius: 20,
+                                      blurRadius: 7,
+                                      offset: const Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 32.0, horizontal: 8.0),
+                                child: Column(
+                                  children: const [
+                                    Icon(Icons.report,
+                                        color: Colors.red, size: 40.0),
+                                    Text(
+                                      'Report',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

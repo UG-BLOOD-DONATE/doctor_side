@@ -1,5 +1,5 @@
 //import 'package:alan_voice/alan_voice.dart';
-
+import 'package:ug_blood_donate/screens/create_event.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -178,7 +178,14 @@ class _Request_pageState extends State<Request_page> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Card(
+                          child: CustomCard(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                return CreateEvent();
+                              }),
+                            ),
                             child: Container(
                               decoration: BoxDecoration(
                                 //color: const Color.fromARGB(255, 243, 248, 247),

@@ -32,6 +32,7 @@ class _MyHomePageState extends State<_MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 194, 10, 172),
           title: const Text('Syncfusion Flutter chart'),
         ),
         body: Column(children: [
@@ -49,7 +50,7 @@ class _MyHomePageState extends State<_MyHomePage> {
                     dataSource: data,
                     xValueMapper: (_SalesData sales, _) => sales.bloodtypes,
                     yValueMapper: (_SalesData sales, _) => sales.no_of_donors,
-                    name: 'number of donors',
+                    name: 'num_of_dnrs',
                     // Enable data label
                     dataLabelSettings: DataLabelSettings(isVisible: true))
               ]),
@@ -58,11 +59,15 @@ class _MyHomePageState extends State<_MyHomePage> {
               padding: const EdgeInsets.all(8.0),
               //Initialize the spark charts widget
               child: SfSparkLineChart.custom(
+                color: Color.fromARGB(255, 194, 10, 172),
+
                 //Enable the trackball
                 trackball: SparkChartTrackball(
+                    color: Colors.blue,
                     activationMode: SparkChartActivationMode.tap),
                 //Enable marker
                 marker: SparkChartMarker(
+                    color: Colors.blue,
                     displayMode: SparkChartMarkerDisplayMode.all),
                 //Enable data label
                 labelDisplayMode: SparkChartLabelDisplayMode.all,

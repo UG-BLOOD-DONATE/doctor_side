@@ -24,14 +24,14 @@ class Router {
   }
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class CreateEvent extends StatefulWidget {
+  const CreateEvent({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  _CreateEventState createState() => _CreateEventState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _CreateEventState extends State<CreateEvent> {
   @override
   Widget build(BuildContext context) {
     CollectionReference create_event =
@@ -83,71 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Center(
                   child: Image.asset('assets/back_arr.png'),
                 ),
-                // const Align(
-                //     alignment: Alignment.topLeft,
-                //     child: Text("Full name:",
-                //         style: TextStyle(fontWeight: FontWeight.w700))),
-                // Align(
-                //   alignment: Alignment.topLeft,
-                //   child: Text(firstName + " " + lastName),
-                // ),
-                // const SizedBox(
-                //   height: 10,
-                // ),
-                // const Align(
-                //     alignment: Alignment.topLeft,
-                //     child: Text("Body Temperature:",
-                //         style: TextStyle(fontWeight: FontWeight.w700))),
-                // Align(
-                //   alignment: Alignment.topLeft,
-                //   child: Text("$bodyTemp ${measure == 1 ? "ºC" : "ºF"}"),
-                // )
               ],
             ),
           ),
-          // actions: <Widget>[
-          //   Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //     children: <Widget>[
-          //       TextButton(
-          //         style: TextButton.styleFrom(
-          //           primary: Colors.white,
-          //           backgroundColor: Colors.grey,
-          //           shape: const RoundedRectangleBorder(
-          //               borderRadius: BorderRadius.all(Radius.circular(10))),
-          //         ),
-          //   child: const Text('Go to profile'),
-          //   onPressed: () async {
-          //     FocusScope.of(context)
-          //         .unfocus(); // unfocus last selected input field
-          //     Navigator.pop(context);
-          //     await Navigator.push(
-          //             context,
-          //             MaterialPageRoute(
-          //                 builder: (context) =>
-          //                     MyProfilePage())) // Open my profile
-          //         .then((_) => _formKey.currentState ?.reset()); // Empty the form fields
-          //     setState(() {});
-          //   }, // so the alert dialog is closed when navigating back to main page
-          // ),
-          // TextButton(
-          //   style: TextButton.styleFrom(
-          //     primary: Colors.white,
-          //     backgroundColor: Colors.blue,
-          //     shape: const RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.all(Radius.circular(10))),
-          //   ),
-          //   child: const Text('OK'),
-          //   onPressed: () {
-          //     Navigator.of(context).pop(); // Close the dialog
-          //     FocusScope.of(context)
-          //         .unfocus(); // Unfocus the last selected input field
-          //     _formKey.currentState?.reset(); // Empty the form fields
-          //   },
-          // )
-          //     ],
-          //   )
-          // ],
         );
       },
     );
@@ -159,35 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
         FirebaseFirestore.instance.collection('create_event');
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, size: 32.0, color: Colors.pink),
-          onPressed: () => Navigator.pop(context, true // MaterialPageRoute(
-              //   builder: (_) => Home(
-              //     currentUser: null,
-              //   ),
-              // ),
-              ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 254, 255, 255),
-        title: const Text(
-          "Create Event",
-          style: TextStyle(
-            color: Color.fromARGB(0, 11, 11, 11),
-          ),
-        ),
-        // actions: <Widget>[
-        //   IconButton(
-        //     icon: const Icon(Icons.account_circle, size: 32.0),
-        //     tooltip: 'Profile',
-        //     onPressed: () {
-        //       Navigator.push(
-        //           context,
-        //           MaterialPageRoute(
-        //             builder: (context) => MyProfilePage(),
-        //           ));
-        //     },
-        //   ),
-        // ],
+        backgroundColor: Color.fromARGB(234, 239, 52, 83),
+        title: Text("Create Events"),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -201,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
               //         fontSize: 24,
               //       )),
               // ),
+
               const SizedBox(
                 height: 40,
               ),

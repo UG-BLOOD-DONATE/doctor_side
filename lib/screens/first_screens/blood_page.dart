@@ -1,4 +1,6 @@
 //import 'package:alan_voice/alan_voice.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ug_blood_donate/models/user_model.dart';
 import 'package:ug_blood_donate/screens/create_event.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,12 +12,16 @@ import 'package:ug_blood_donate/screens/graph.dart';
 import 'package:ug_blood_donate/screens/onboarding_screens.dart';
 import 'package:ug_blood_donate/screens/qr_scanner.dart';
 import 'package:ug_blood_donate/models/predite_user.dart';
+import 'package:ug_blood_donate/services/database_report.dart';
 import 'package:ug_blood_donate/utils/firebase.dart';
 //import 'package:ug_blood_donate/Doctor_side/screen/create_event.dart';
 
-void main() {
-  runApp(const Request_page());
-}
+// void main() {
+//   runApp(const Request_page());
+// }
+
+User? user = FirebaseAuth.instance.currentUser;
+UserModel loggedInUser = UserModel();
 
 class Request_page extends StatefulWidget {
   const Request_page({super.key});
@@ -34,6 +40,21 @@ class _Request_pageState extends State<Request_page> {
     //   debugPrint("got new command ${command.toString()}");
     // });
   }
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      loggedInUser = UserModel.fromMap(value.data());
+      //print('hi user');
+      setState(() {});
+    });
+  }
+
+  TextEditingController location = TextEditingController();
+  TextEditingController hosiptal = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +69,12 @@ class _Request_pageState extends State<Request_page> {
                 children: [
                   ListTile(
                     title: Text(
-                      '  Hello! Nusrat.',
+                      '  Hello! ${loggedInUser.fullname}.',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
                     subtitle: Text(
-                      '  Hello! Nusrat.',
+                      '  Thanks for your will.',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 20.0),
                     ),
@@ -74,18 +95,21 @@ class _Request_pageState extends State<Request_page> {
                   ),
                   const Divider(),
                   const Divider(),
-                  const TextField(
+                  TextFormField(
+                    controller: hosiptal,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Select Hospital',
+                      hintText: 'Select Hospital if you are new here or update',
                       suffixIcon: Icon(Icons.location_on),
                     ),
                   ),
                   const Divider(),
-                  const TextField(
+                  TextFormField(
+                    controller: location,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      hintText: 'Select Blood Group',
+                      hintText:
+                          'Hospital location if you are new here or update',
                       suffixIcon: Icon(Icons.location_on),
                     ),
                   ),
@@ -124,8 +148,12 @@ class _Request_pageState extends State<Request_page> {
                                     MaterialStateProperty.all<Color>(
                                         Colors.white),
                               ),
-                              onPressed: () {},
-                              child: const Text('Send Request'),
+                              onPressed: () async {
+                                await DatabaseService(uid: user!.uid)
+                                    .updateDoctorHosiptal(
+                                        hosiptal.text, location.text);
+                              },
+                              child: const Text('Send Details'),
                             ),
                           ),
                         ),

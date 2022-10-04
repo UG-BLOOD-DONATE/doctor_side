@@ -21,7 +21,7 @@ class _PredModelState extends State<PredModel> {
   Future<void> predData() async {
     final interpreter = await Interpreter.fromAsset('prediction_model.tflite');
     var input = [
-      [74.0, 72.0, 1.0, 250.0, 72.0]
+      [74.0, 72.0, 1.0, 250.0, 72.0, 1.0]
     ];
     var output = List.filled(1, 0).reshape([1, 1]);
     interpreter.run(input, output);
@@ -36,19 +36,19 @@ class _PredModelState extends State<PredModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromARGB(255, 243, 33, 128),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "change the input values in code to get the prediction",
+              "Posibility of donor to donate next month.",
               style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 12),
             MaterialButton(
-              color: Colors.blue,
+              color: Color.fromARGB(255, 243, 33, 128),
               child: Text(
                 "predict",
                 style: TextStyle(fontSize: 25),

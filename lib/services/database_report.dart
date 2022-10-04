@@ -29,4 +29,14 @@ class DatabaseService {
       'hospital': hospital,
     });
   }
+
+  Future<void> updateDoctorHosiptal(
+    String hospital,
+    String location,
+  ) async {
+    return await brewCollection.doc(uid).set({
+      'hospital': hospital,
+      'location': location,
+    });
+  }
 }

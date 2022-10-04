@@ -9,6 +9,7 @@
 #include <dialogflow_grpc/dialogflow_grpc_plugin.h>
 #include <geolocator_windows/geolocator_windows.h>
 #include <permission_handler_windows/permission_handler_windows_plugin.h>
+#include <tflite_flutter_helper/tflite_flutter_helper_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   DialogflowGrpcPluginRegisterWithRegistrar(
@@ -17,4 +18,6 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("GeolocatorWindows"));
   PermissionHandlerWindowsPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("PermissionHandlerWindowsPlugin"));
+  TfliteFlutterHelperPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("TfliteFlutterHelperPlugin"));
 }

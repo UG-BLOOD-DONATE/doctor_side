@@ -21,7 +21,7 @@ class _PredModelState extends State<PredModel> {
   Future<void> predData() async {
     final interpreter = await Interpreter.fromAsset('prediction_model.tflite');
     var input = [
-      [74, 72, 1, 250, 72]
+      [74.0, 72.0, 1.0, 250.0, 72.0]
     ];
     var output = List.filled(1, 0).reshape([1, 1]);
     interpreter.run(input, output);

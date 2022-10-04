@@ -54,10 +54,10 @@ class _FindDonorState extends State<FindDonor> {
                       //         ),
                       // ),
                       leading: CustomImage(
-                        imageUrl: loggedInUser.photoURL,
+                        imageUrl: doc['photoURL'],
                         fit: BoxFit.cover,
-                        width: 6,
-                        height: 6,
+                        width: 40,
+                        height: 40,
                       ),
                       title: Text(doc['fullname']),
                       subtitle: Text(doc['location']),

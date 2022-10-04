@@ -5,10 +5,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ug_blood_donate/components/custom_card.dart';
 import 'package:ug_blood_donate/screens/create_event.dart';
+import 'package:ug_blood_donate/screens/find_donor.dart';
 import 'package:ug_blood_donate/screens/graph.dart';
 import 'package:ug_blood_donate/screens/onboarding_screens.dart';
 import 'package:ug_blood_donate/screens/qr_scanner.dart';
-import 'package:ug_blood_donate/screens/report_form.dart';
+import 'package:ug_blood_donate/models/predite_user.dart';
 import 'package:ug_blood_donate/utils/firebase.dart';
 //import 'package:ug_blood_donate/Doctor_side/screen/create_event.dart';
 
@@ -142,7 +143,12 @@ class _Request_pageState extends State<Request_page> {
                       children: [
                         Expanded(
                           flex: 1,
-                          child: Card(
+                          child: CustomCard(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FindDonor()),
+                            ),
                             child: Container(
                               decoration: BoxDecoration(
                                 //color: const Color.fromARGB(255, 243, 248, 247),
@@ -221,7 +227,14 @@ class _Request_pageState extends State<Request_page> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Card(
+                          child: CustomCard(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                return PredModel();
+                              }),
+                            ),
                             child: Container(
                               decoration: BoxDecoration(
                                 //color: const Color.fromARGB(255, 243, 248, 247),

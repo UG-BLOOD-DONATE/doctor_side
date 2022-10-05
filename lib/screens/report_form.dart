@@ -30,14 +30,14 @@ class MyCustomFormState extends State<MyCustomForm> {
     'AB+',
     'AB-'
   ];
-  late String glucose;
-  late String cholesterol;
-  late String bilirubin;
-  late String bloodtype;
-  late String rbc;
-  late String mvc;
-  late String platelets;
-  late String hospital;
+  TextEditingController glucose = TextEditingController();
+  TextEditingController cholesterol = TextEditingController();
+  TextEditingController bilirubin = TextEditingController();
+  TextEditingController bloodtype = TextEditingController();
+  TextEditingController rbc = TextEditingController();
+  TextEditingController mvc = TextEditingController();
+  TextEditingController platelets = TextEditingController();
+  TextEditingController hospital = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,31 +52,99 @@ class MyCustomFormState extends State<MyCustomForm> {
             children: <Widget>[
               TextFormField(
                 //initialValue: 'Please enter a hospital name',
-                decoration: textInputDecoration,
-                validator: (val) =>
-                    val!.isEmpty ? 'Please enter a hospital name' : null,
-                onChanged: (val) => setState(() => hospital = val),
+                //decoration: textInputDecoration,
+                controller: hospital,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            prefixIcon: const Icon(
+                              Icons.mail_outlined,
+                              color: Colors.pink,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 3, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 2, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintText: 'Please enter a hospital name'),
+                // validator: (val) =>
+                //     val!.isEmpty ? 'Please enter a hospital name' : null,
+                // onChanged: (val) => setState(() => hospital = val),
               ),
-              TextFormField(
+              TextField(
                 // initialValue: 'Please enter glucose levels',
-                decoration: textInputDecoration,
-                validator: (val) =>
-                    val!.isEmpty ? 'Please enter glucose levels' : null,
-                onChanged: (val) => setState(() => glucose = val),
+                //decoration: textInputDecoration,
+                controller: glucose,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            prefixIcon: const Icon(
+                              Icons.mail_outlined,
+                              color: Colors.pink,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 3, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 2, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintText: 'Please enter glucose levels'),
+                // validator: (val) =>
+                //     val!.isEmpty ? 'Please enter glucose levels' : null,
+                // onChanged: (val) => setState(() => glucose = val),
               ),
               TextFormField(
                 // initialValue: 'Please enter cholesterol levels',
-                decoration: textInputDecoration,
-                validator: (val) =>
-                    val!.isEmpty ? 'Please enter cholesterol levels' : null,
-                onChanged: (val) => setState(() => cholesterol = val),
+                // decoration: textInputDecoration,
+                controller: cholesterol,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            prefixIcon: const Icon(
+                              Icons.mail_outlined,
+                              color: Colors.pink,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 3, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 2, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintText: 'Please enter cholesterol levels'),
+                // validator: (val) =>
+                //     val!.isEmpty ? 'Please enter cholesterol levels' : null,
+                // onChanged: (val) => setState(() => cholesterol = val),
               ),
               TextFormField(
                 // initialValue: 'Please enter bilirubin levels',
-                decoration: textInputDecoration,
-                validator: (val) =>
-                    val!.isEmpty ? 'Please enter bilirubin levels' : null,
-                onChanged: (val) => setState(() => bilirubin = val),
+                // decoration: textInputDecoration,
+                controller: bilirubin,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            prefixIcon: const Icon(
+                              Icons.mail_outlined,
+                              color: Colors.pink,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 3, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 2, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintText: 'Please enter bilirubin levels'),
+                // validator: (val) =>
+                //     val!.isEmpty ? 'Please enter bilirubin levels' : null,
+                // onChanged: (val) => setState(() => bilirubin = val),
               ),
               DropdownButtonFormField(
                 //value: bloodtype == null ? 'Blood Type' : bloodtype,
@@ -92,17 +160,51 @@ class MyCustomFormState extends State<MyCustomForm> {
               ),
               TextFormField(
                 // initialValue: 'Please enter rbc levels',
-                decoration: textInputDecoration,
-                validator: (val) =>
-                    val!.isEmpty ? 'Please enter rbc levels' : null,
-                onChanged: (val) => setState(() => rbc = val),
+                // decoration: textInputDecoration,
+                controller:rbc,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            prefixIcon: const Icon(
+                              Icons.mail_outlined,
+                              color: Colors.pink,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 3, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 2, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintText: 'Please enter rbc levels'),
+                // validator: (val) =>
+                //     val!.isEmpty ? 'Please enter rbc levels' : null,
+                // onChanged: (val) => setState(() => rbc = val),
               ),
               TextFormField(
                 // initialValue: 'Please enter platelets levels',
-                decoration: textInputDecoration,
-                validator: (val) =>
-                    val!.isEmpty ? 'Please enter platelets levels' : null,
-                onChanged: (val) => setState(() => platelets = val),
+                // decoration: textInputDecoration,
+                 controller: platelets,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                            prefixIcon: const Icon(
+                              Icons.mail_outlined,
+                              color: Colors.pink,
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 3, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    width: 2, color: Colors.pink),
+                                borderRadius: BorderRadius.circular(9.0)),
+                            hintText: 'Please enter platelets levels'),
+                // validator: (val) =>
+                //     val!.isEmpty ? 'Please enter platelets levels' : null,
+                // onChanged: (val) => setState(() => platelets = val),
               ),
               Container(
                   padding: const EdgeInsets.only(left: 150.0, top: 40.0),
@@ -113,8 +215,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                       if (_formKey.currentState!.validate()) {
                         var user;
                         await DatabaseService(uid: widget.my_id)
-                            .updateUserRepost(glucose, cholesterol, bilirubin,
-                                bloodtype, rbc, mvc, platelets, hospital);
+                            .updateUserRepost(glucose.text, cholesterol.text, bilirubin.text,
+                                bloodtype.text, rbc.text, mvc.text, platelets.text, hospital.text );
                         // If the form is valid, display a Snackbar.
                         final snackBar = SnackBar(
                           content: const Text('Data has processed!'),

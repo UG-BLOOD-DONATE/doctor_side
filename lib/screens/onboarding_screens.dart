@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: showHome ? Request_page() : OnboardingScreen(),
+      home: showHome ? const Request_page() : const OnboardingScreen(),
     );
   }
 }
@@ -60,7 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               liquidController: controller,
               pages: [
                 Container(
-                  color: Color.fromARGB(255, 239, 20, 20),
+                  color: const Color.fromARGB(255, 239, 20, 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -72,10 +72,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       const SizedBox(
                         height: 44,
                       ),
-                      Text(
+                      const Text(
                         'Find Blood Donors',
                         style: TextStyle(
-                          color: Colors.teal.shade700,
+                          color: Color.fromARGB(255, 244, 247, 246),
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
                         ),
@@ -83,10 +83,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       const SizedBox(
                         height: 44,
                       ),
-                      Text(
+                      const Text(
                         'Locate a blood donor nearby',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 252, 251, 251),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -95,7 +95,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 Container(
-                  color: Color.fromARGB(255, 18, 8, 203),
+                  color: const Color.fromARGB(255, 18, 8, 203),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -110,7 +110,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Text(
                         'Find Blood Donors',
                         style: TextStyle(
-                          color: Colors.teal.shade700,
+                          color: Color.fromARGB(255, 242, 247, 246),
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
                         ),
@@ -118,10 +118,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       const SizedBox(
                         height: 44,
                       ),
-                      Text(
+                      const Text(
                         'Locate a blood donor nearby',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Color.fromARGB(255, 250, 248, 248),
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -130,7 +130,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 Container(
-                  color: Color.fromARGB(255, 8, 203, 34),
+                  color: const Color.fromARGB(255, 8, 203, 34),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: SingleChildScrollView(
@@ -289,11 +289,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => Request_page(),
+                    builder: (_) => const Request_page(),
                   ),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Get started',
                 style: TextStyle(
                   color: Colors.black,

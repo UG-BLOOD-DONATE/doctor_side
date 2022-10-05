@@ -51,28 +51,28 @@ class MyCustomFormState extends State<MyCustomForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               TextFormField(
-                initialValue: 'Please enter a hospital name',
+                //initialValue: 'Please enter a hospital name',
                 decoration: textInputDecoration,
                 validator: (val) =>
                     val!.isEmpty ? 'Please enter a hospital name' : null,
                 onChanged: (val) => setState(() => hospital = val),
               ),
               TextFormField(
-                initialValue: 'Please enter glucose levels',
+                // initialValue: 'Please enter glucose levels',
                 decoration: textInputDecoration,
                 validator: (val) =>
                     val!.isEmpty ? 'Please enter glucose levels' : null,
                 onChanged: (val) => setState(() => glucose = val),
               ),
               TextFormField(
-                initialValue: 'Please enter cholesterol levels',
+                // initialValue: 'Please enter cholesterol levels',
                 decoration: textInputDecoration,
                 validator: (val) =>
                     val!.isEmpty ? 'Please enter cholesterol levels' : null,
                 onChanged: (val) => setState(() => cholesterol = val),
               ),
               TextFormField(
-                initialValue: 'Please enter bilirubin levels',
+                // initialValue: 'Please enter bilirubin levels',
                 decoration: textInputDecoration,
                 validator: (val) =>
                     val!.isEmpty ? 'Please enter bilirubin levels' : null,
@@ -91,14 +91,14 @@ class MyCustomFormState extends State<MyCustomForm> {
                 onChanged: (val) => setState(() => bloodtype = val.toString()),
               ),
               TextFormField(
-                initialValue: 'Please enter rbc levels',
+                // initialValue: 'Please enter rbc levels',
                 decoration: textInputDecoration,
                 validator: (val) =>
                     val!.isEmpty ? 'Please enter rbc levels' : null,
                 onChanged: (val) => setState(() => rbc = val),
               ),
               TextFormField(
-                initialValue: 'Please enter platelets levels',
+                // initialValue: 'Please enter platelets levels',
                 decoration: textInputDecoration,
                 validator: (val) =>
                     val!.isEmpty ? 'Please enter platelets levels' : null,

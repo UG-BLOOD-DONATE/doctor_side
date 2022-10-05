@@ -12,6 +12,7 @@ import 'package:ug_blood_donate/screens/graph.dart';
 import 'package:ug_blood_donate/screens/onboarding_screens.dart';
 import 'package:ug_blood_donate/screens/qr_scanner.dart';
 import 'package:ug_blood_donate/models/predite_user.dart';
+import 'package:ug_blood_donate/screens/user_req.dart';
 import 'package:ug_blood_donate/services/database_report.dart';
 import 'package:ug_blood_donate/utils/firebase.dart';
 //import 'package:ug_blood_donate/Doctor_side/screen/create_event.dart';
@@ -55,6 +56,9 @@ class _Request_pageState extends State<Request_page> {
 
   TextEditingController location = TextEditingController();
   TextEditingController hosiptal = TextEditingController();
+  final Stream<QuerySnapshot> _notificationStream = FirebaseFirestore.instance
+      .collection("bloodrequests")
+      .snapshots(includeMetadataChanges: true);
 
   @override
   Widget build(BuildContext context) {
@@ -243,7 +247,7 @@ class _Request_pageState extends State<Request_page> {
                                   Icon(Icons.bloodtype,
                                       color: Colors.red, size: 40.0),
                                   Text(
-                                    'Request',
+                                    'Event',
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
@@ -452,61 +456,102 @@ class _Request_pageState extends State<Request_page> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         Text('Donation Request'),
-                        Text('See all'),
+                        GestureDetector(
+                            onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) {
+                                    return UserNotification();
+                                  }),
+                                ),
+                            child: Text('See all')),
                       ],
                     ),
                   ),
-                  Card(
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Image.asset('images/dice1.png'),
-                            Column(
-                              children: [
-                                const Text(
-                                  'Sabrina Binte Zahir',
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'Labaid Hospital',
-                                  style: TextStyle(color: Colors.grey[500]),
-                                ),
-                                Text(
-                                  'Science Lab, Dhaka 1205',
-                                  style: TextStyle(color: Colors.grey[500]),
-                                ),
-                                Text(
-                                  'Time: 02:00 PM, 19 January 2022',
-                                  style: TextStyle(color: Colors.grey[500]),
-                                )
-                              ],
-                            ),
-                            Image.asset('images/dice1.png')
-                          ],
-                        ),
-                        const Divider(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Decline',
-                              style: TextStyle(
-                                  color: Colors.grey[500],
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            const Text(
-                              'Donate Now',
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ],
+                  // Card(
+                  //   child: Column(
+                  //     children: [
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           Image.asset('images/dice1.png'),
+                  //           Column(
+                  //             children: [
+                  //               const Text(
+                  //                 'Sabrina Binte Zahir',
+                  //                 style: TextStyle(fontWeight: FontWeight.bold),
+                  //               ),
+                  //               Text(
+                  //                 'Labaid Hospital',
+                  //                 style: TextStyle(color: Colors.grey[500]),
+                  //               ),
+                  //               Text(
+                  //                 'Science Lab, Dhaka 1205',
+                  //                 style: TextStyle(color: Colors.grey[500]),
+                  //               ),
+                  //               Text(
+                  //                 'Time: 02:00 PM, 19 January 2022',
+                  //                 style: TextStyle(color: Colors.grey[500]),
+                  //               )
+                  //             ],
+                  //           ),
+                  //           Image.asset('images/dice1.png')
+                  //         ],
+                  //       ),
+                  //       const Divider(),
+                  //       Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //         children: [
+                  //           Text(
+                  //             'Decline',
+                  //             style: TextStyle(
+                  //                 color: Colors.grey[500],
+                  //                 fontWeight: FontWeight.bold),
+                  //           ),
+                  //           const Text(
+                  //             'Donate Now',
+                  //             style: TextStyle(
+                  //                 color: Colors.red,
+                  //                 fontWeight: FontWeight.bold),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  SingleChildScrollView(
+                    child: StreamBuilder(
+                      stream: _notificationStream,
+                      builder: (BuildContext context,
+                          AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return const Center(
+                              child: Text('Something went wrong'));
+                        }
+
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(child: Text("Loading"));
+                        }
+
+                        return ListView(
+                          children: snapshot.data!.docs
+                              .map((DocumentSnapshot document) {
+                            Map<String, dynamic> data =
+                                document.data()! as Map<String, dynamic>;
+                            return CustomCard(
+                              onTap: () {},
+                              child: ListTile(
+                                title: Text(data['contact']),
+                                subtitle: Text(data['note']),
+                                trailing: Text(data['location']),
+                              ),
+                            );
+                          }).toList(),
+                        );
+                      },
                     ),
                   ),
                 ],

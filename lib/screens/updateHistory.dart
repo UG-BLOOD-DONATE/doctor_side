@@ -4,12 +4,12 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:ug_blood_donate/screens/report_form.dart';
+import 'package:ug_blood_donate/screens/histroy.dart';
 
 // void main() => runApp(const MaterialApp(home: MyHome()));
 
-class qrscanner extends StatelessWidget {
-  const qrscanner({Key? key}) : super(key: key);
+class HistoryScanner extends StatelessWidget {
+  const HistoryScanner({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (BuildContext context) {
-                              return MyCustomForm(
+                              return History(
                                 my_id: result!.toString(),
                               );
                             }),
@@ -316,9 +316,9 @@ class _QRViewExampleState extends State<QRViewExample> {
 //                 Navigator.push(
 //                   context,
 //                   MaterialPageRoute(builder: (BuildContext context) {
-//                     return History(
-//                       my_id: rsl, //result.toString(),
-//                     );
+                    // return History(
+                    //   my_id: rsl, //result.toString(),
+                    // );
 //                   }),
 //                 );
 //               } else {

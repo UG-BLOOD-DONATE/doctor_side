@@ -95,14 +95,14 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                   madeDonation = doc['madeDonation'];
                   noOfDtns = doc['noOfDtns'];
 
-                  //   prob = PredModel(
-                  //     donorNo: donorNo,
-                  //     madeDonation: madeDonation,
-                  //     monthSinceFdonation: monthSinceFdonation,
-                  //     monthSinceLdonation: monthSinceLdonation,
-                  //     noOfDtns: noOfDtns,
-                  //     totalVolumnDonated: totalVolumnDonated,
-                  //   ).predData();
+                  // prob = PredModel(
+                  //   donorNo: donorNo,
+                  //   madeDonation: madeDonation,
+                  //   monthSinceFdonation: monthSinceFdonation,
+                  //   monthSinceLdonation: monthSinceLdonation,
+                  //   noOfDtns: noOfDtns,
+                  //   totalVolumnDonated: totalVolumnDonated,
+                  // ).predData();
                 });
               }
               return Scaffold(
@@ -288,10 +288,26 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                                         color: Colors.white,
                                         size: 24.0,
                                       ),
-                                      label: const Text('Request'),
-                                      onPressed: () {
-                                        print('Pressed');
-                                      },
+                                      label: const Text('See prediction'),
+                                      onPressed: () => Navigator.push(
+                                            context, //true
+                                            MaterialPageRoute(
+                                              builder: (_) => PredModel(
+                                                donorNo: donorNo,
+                                                madeDonation: madeDonation,
+                                                monthSinceFdonation:
+                                                    monthSinceFdonation,
+                                                monthSinceLdonation:
+                                                    monthSinceLdonation,
+                                                noOfDtns: noOfDtns,
+                                                totalVolumnDonated:
+                                                    totalVolumnDonated,
+                                              ),
+                                            ),
+                                          ),
+                                      // {
+                                      //   print('Pressed');
+                                      // },
                                       style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(

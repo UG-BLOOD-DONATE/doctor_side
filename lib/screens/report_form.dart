@@ -1,7 +1,6 @@
-// ignore_for_file: non_constant_identifier_names, must_be_immutable
+// ignore_for_file: non_constant_identifier_names, must_be_immutable, use_build_context_synchronously
 
 import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
-import 'package:ug_blood_donate/screens/qr_scanner.dart';
 import 'package:ug_blood_donate/services/database_report.dart';
 import 'package:ug_blood_donate/components/constants.dart';
 import 'package:flutter/material.dart';
@@ -144,12 +143,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                             const BorderSide(width: 2, color: Colors.pink),
                         borderRadius: BorderRadius.circular(9.0)),
                     hintText: 'Please enter bilirubin levels'),
-                // validator: (val) =>
-                //     val!.isEmpty ? 'Please enter bilirubin levels' : null,
-                // onChanged: (val) => setState(() => bilirubin = val),
               ),
               DropdownButtonFormField(
-                //value: bloodtype == null ? 'Blood Type' : bloodtype,
                 hint: const Text('Blood Type'),
                 decoration: textInputDecoration,
                 items: bloods.map((blood) {
@@ -161,8 +156,6 @@ class MyCustomFormState extends State<MyCustomForm> {
                 onChanged: (val) => setState(() => bloodtype = val.toString()),
               ),
               TextFormField(
-                // initialValue: 'Please enter rbc levels',
-                // decoration: textInputDecoration,
                 controller: rbc,
                 decoration: InputDecoration(
                     filled: true,
@@ -233,43 +226,30 @@ class MyCustomFormState extends State<MyCustomForm> {
                     child: const Text('Submit'),
                     onPressed: () async {
                       // It returns true if the form is valid, otherwise returns false
-                      if (_formKey.currentState!.validate()) {
-                        final snackBar = SnackBar(
-                          content: const Text('Data has processed!'),
-                          backgroundColor: (Colors.black12),
-                          action: SnackBarAction(
-                            label: 'dismiss',
-                            onPressed: () {},
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      await DatabaseService(uid: widget.my_id).updateUserRepost(
+                          glucose.text,
+                          cholesterol.text,
+                          bilirubin.text,
+                          bloodtype,
+                          rbc.text,
+                          mvc.text,
+                          platelets.text,
+                          hospital.text);
+                      glucose.clear();
+                      cholesterol.clear();
+                      bilirubin.clear();
+                      //bloodtype,
+                      rbc.clear();
+                      mvc.clear();
+                      platelets.clear();
+                      hospital.clear();
 
-                        await DatabaseService(uid: widget.my_id)
-                            .updateUserRepost(
-                                glucose.text,
-                                cholesterol.text,
-                                bilirubin.text,
-                                bloodtype,
-                                rbc.text,
-                                mvc.text,
-                                platelets.text,
-                                hospital.text);
-                        glucose.clear();
-                        cholesterol.clear();
-                        bilirubin.clear();
-                        //bloodtype,
-                        rbc.clear();
-                        mvc.clear();
-                        platelets.clear();
-                        hospital.clear();
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                            return const Request_page();
-                          }),
-                        );
-                      }
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const Request_page();
+                        }),
+                      );
                     },
                   )),
             ],
@@ -279,100 +259,3 @@ class MyCustomFormState extends State<MyCustomForm> {
     );
   }
 }
-
-
-
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:ug_blood_donate/models/user_model.dart';
-// import 'package:ug_blood_donate/services/database_report.dart';
-// import 'package:ug_blood_donate/components/constants.dart';
-// import 'package:ug_blood_donate/components/loading.dart';
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-
-// class SettingsForm extends StatefulWidget {
-//   @override
-//   _SettingsFormState createState() => _SettingsFormState();
-// }
-
-// class _SettingsFormState extends State<SettingsForm> {
-//   final _formKey = GlobalKey<FormState>();
-//   final List<String> bloods = ['0', '1', '2', '3', '4'];
-//   final List<int> strengths = [100, 200, 300, 400, 500, 600, 700, 800, 900];
-
-//   // form values
-//   String _currentName;
-//   String _currentbloods;
-//   int _currentStrength;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     User user = Provider.of<User>(context);
-
-//     return StreamBuilder<UserData>(
-//         stream: DatabaseService(uid: user.uid).userData,
-//         builder: (context, snapshot) {
-//           if (snapshot.hasData) {
-//             UserData userData = snapshot.data;
-//             return Form(
-//               key: _formKey,
-//               child: Column(
-//                 children: <Widget>[
-//                   Text(
-//                     'Update your brew settings.',
-//                     style: TextStyle(fontSize: 18.0),
-//                   ),
-//                   SizedBox(height: 20.0),
-//                   TextFormField(
-//                     initialValue: userData.name,
-//                     decoration: textInputDecoration,
-//                     validator: (val) =>
-//                         val!.isEmpty ? 'Please enter a name' : null,
-//                     onChanged: (val) => setState(() => _currentName = val),
-//                   ),
-//                   SizedBox(height: 10.0),
-//                   DropdownButtonFormField(
-//                     value: _currentbloods,
-//                     decoration: textInputDecoration,
-//                     items: bloods.map((blood) {
-//                       return DropdownMenuItem(
-//                         value: blood,
-//                         child: Text('$blood bloods'),
-//                       );
-//                     }).toList(),
-//                     onChanged: (val) =>
-//                         setState(() => _currentbloods = val.toString()),
-//                   ),
-//                   SizedBox(height: 10.0),
-//                   Slider(
-//                     value: (_currentStrength).toDouble(),
-//                     activeColor: Colors.brown[_currentStrength],
-//                     inactiveColor: Colors.brown[_currentStrength],
-//                     min: 100.0,
-//                     max: 900.0,
-//                     divisions: 8,
-//                     onChanged: (val) =>
-//                         setState(() => _currentStrength = val.round()),
-//                   ),
-//                   ElevatedButton(
-//                       //color: Colors.pink[400],
-//                       child: Text(
-//                         'Update',
-//                         style: TextStyle(color: Colors.white),
-//                       ),
-//                       onPressed: () async {
-//                         if (_formKey.currentState!.validate()) {
-//                           await DatabaseService(uid: user.uid).updateUserRepost(
-//                               _currentbloods, _currentName, _currentStrength);
-//                           Navigator.pop(context);
-//                         }
-//                       }),
-//                 ],
-//               ),
-//             );
-//           } else {
-//             return Loading();
-//           }
-//         });
-//   }
-// }

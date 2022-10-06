@@ -34,14 +34,16 @@ class _FindDonorState extends State<FindDonor> {
             return ListView(
               children: snapshot.data!.docs.map((doc) {
                 return CustomCard(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => DonerProfilePage(
-                        documentId: doc['uid'],
+                  onTap: () async {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => DonerProfilePage(
+                          documentId: doc['uid'],
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  },
                   child: ListTile(
                     // leading: Center(
                     //   child: loggedInUser.photoURL == null
@@ -63,7 +65,7 @@ class _FindDonorState extends State<FindDonor> {
                     ),
                     title: Text(doc['fullname']),
                     subtitle: Text(doc['location']),
-                    //trailing: Text(doc['bloodType']),
+                    trailing: Text(doc['bloodType']),
                   ),
                 );
               }).toList(),

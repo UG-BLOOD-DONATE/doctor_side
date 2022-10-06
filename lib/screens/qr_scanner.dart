@@ -1,6 +1,7 @@
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_blood_donate/components/custom_card.dart';
+import 'package:ug_blood_donate/screens/histroy.dart';
 import 'dart:io';
 
 import 'package:ug_blood_donate/screens/report_form.dart';
@@ -66,31 +67,61 @@ class _qrscannerState extends State<qrscanner> {
     //dispose();
     return Scaffold(
       appBar: AppBar(
-        leading: CustomCard(
-          onTap: () {
-            if (rsl != null) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (BuildContext context) {
-                  return MyCustomForm(
-                    my_id: rsl, //result.toString(),
-                  );
-                }),
-              );
-            } else {
-              final snackBar = SnackBar(
-                content: const Text('try scan again'),
-                backgroundColor: (Colors.black12),
-                action: SnackBarAction(
-                  label: 'dismiss',
-                  onPressed: () {},
-                ),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            }
-          },
-          child: Text('tap to write report'),
-        ),
+        actions: [
+          CustomCard(
+            onTap: () {
+              if (rsl != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return MyCustomForm(
+                      my_id: rsl, //result.toString(),
+                    );
+                  }),
+                );
+              } else {
+                final snackBar = SnackBar(
+                  content: const Text('try scan again'),
+                  backgroundColor: (Colors.black12),
+                  action: SnackBarAction(
+                    label: 'dismiss',
+                    onPressed: () {},
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+            },
+            child: Text('tap for report_form'),
+          ),
+          SizedBox(
+            height: 25,
+          ),
+          CustomCard(
+            onTap: () {
+              if (rsl != null) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return History(
+                      my_id: rsl, //result.toString(),
+                    );
+                  }),
+                );
+              } else {
+                final snackBar = SnackBar(
+                  content: const Text('try scan again'),
+                  backgroundColor: (Colors.black12),
+                  action: SnackBarAction(
+                    label: 'dismiss',
+                    onPressed: () {},
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
+            },
+            child: Text('tap for histroy'),
+          ),
+        ],
       ),
       body: QRView(
         key: qrKey,

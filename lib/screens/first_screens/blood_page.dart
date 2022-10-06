@@ -260,13 +260,14 @@ class _Request_pageState extends State<Request_page> {
                         Expanded(
                           flex: 1,
                           child: CustomCard(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                return PredModel();
-                              }),
-                            ),
+                            onTap: () {},
+                            // onTap: () => Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (BuildContext context) {
+                            //     return PredModel();
+                            //   }),
+                            //),
                             child: Container(
                               decoration: BoxDecoration(
                                 //color: const Color.fromARGB(255, 243, 248, 247),

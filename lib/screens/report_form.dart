@@ -235,14 +235,14 @@ class MyCustomFormState extends State<MyCustomForm> {
                           mvc.text,
                           platelets.text,
                           hospital.text);
-                      glucose.clear();
-                      cholesterol.clear();
-                      bilirubin.clear();
-                      //bloodtype,
-                      rbc.clear();
-                      mvc.clear();
-                      platelets.clear();
-                      hospital.clear();
+                      // glucose.clear();
+                      // cholesterol.clear();
+                      // bilirubin.clear();
+                      // //bloodtype,
+                      // rbc.clear();
+                      // mvc.clear();
+                      // platelets.clear();
+                      // hospital.clear();
 
                       Navigator.push(
                         context,

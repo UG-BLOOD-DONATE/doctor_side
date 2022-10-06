@@ -201,42 +201,31 @@ class HistoryState extends State<History> {
                     child: const Text('Submit'),
                     onPressed: () async {
                       // It returns true if the form is valid, otherwise returns false
-                      if (_formKey.currentState!.validate()) {
-                        final snackBar = SnackBar(
-                          content: const Text('Data has processed!'),
-                          backgroundColor: (Colors.black12),
-                          action: SnackBarAction(
-                            label: 'dismiss',
-                            onPressed: () {},
-                          ),
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                        await DatabaseService(uid: widget.my_id)
-                            .updateDonorHistory(
-                          total_donations.text,
-                          month_of_Ldonation.text,
-                          month_of_Fdonation.text,
-                          Donor_no.text,
-                          blood_donated.text,
-                          1.toString(),
-                        );
-                        month_of_Ldonation.clear();
-                        month_of_Fdonation.clear();
-                        //made_donation.clear();
-                        no_of_dtns.clear();
-                        total_donations.clear();
-                        //month_of_donation.clear();
-                        Donor_no.clear();
-                        blood_donated.clear();
+                      await DatabaseService(uid: widget.my_id)
+                          .updateDonorHistory(
+                        total_donations.text,
+                        month_of_Ldonation.text,
+                        month_of_Fdonation.text,
+                        Donor_no.text,
+                        blood_donated.text,
+                        1.toString(),
+                      );
+                      // month_of_Ldonation.clear();
+                      // month_of_Fdonation.clear();
+                      // //made_donation.clear();
+                      // no_of_dtns.clear();
+                      // total_donations.clear();
+                      // //month_of_donation.clear();
+                      // Donor_no.clear();
+                      // blood_donated.clear();
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (BuildContext context) {
-                            return const Request_page();
-                          }),
-                        );
-                      }
+                      // await Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (BuildContext context) {
+                      //     return const Request_page();
+                      //   }),
+                      // );
                     },
                   )),
             ],

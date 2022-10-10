@@ -14,7 +14,7 @@ class qrscanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Flutter Demo Home Page')),
+      appBar: AppBar(title: const Text('Scanner page:')),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
@@ -22,7 +22,7 @@ class qrscanner extends StatelessWidget {
               builder: (context) => const QRViewExample(),
             ));
           },
-          child: const Text('qrView'),
+          child: const Text('Edit report_form'),
         ),
       ),
     );
@@ -70,11 +70,13 @@ class _QRViewExampleState extends State<QRViewExample> {
                       margin: const EdgeInsets.all(8),
                       child: ElevatedButton(
                         onPressed: () {
+                          var ui = result!;
+                          print(ui);
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (BuildContext context) {
                               return MyCustomForm(
-                                my_id: result!.toString(),
+                                my_id: ui,
                               );
                             }),
                           );

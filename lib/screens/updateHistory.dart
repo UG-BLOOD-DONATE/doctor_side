@@ -74,7 +74,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                             context,
                             MaterialPageRoute(builder: (BuildContext context) {
                               return History(
-                                my_id: result!.toString(),
+                                my_id: result!,
                               );
                             }),
                           );

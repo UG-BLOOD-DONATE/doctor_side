@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names, must_be_immutable
 
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
 import 'package:ug_blood_donate/screens/qr_scanner.dart';
 import 'package:ug_blood_donate/services/database_report.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 
 // Create a Form widget.
 class History extends StatefulWidget {
-  String my_id;
+  Barcode my_id;
   History({Key? key, required this.my_id}) : super(key: key);
 
   @override
@@ -202,7 +203,7 @@ class HistoryState extends State<History> {
                     onPressed: () async {
                       // It returns true if the form is valid, otherwise returns false
 
-                      await DatabaseService(uid: widget.my_id)
+                      await DatabaseService(uid: '${widget.my_id}')
                           .updateDonorHistory(
                         total_donations.text,
                         month_of_Ldonation.text,
@@ -211,21 +212,21 @@ class HistoryState extends State<History> {
                         blood_donated.text,
                         1.toString(),
                       );
-                      // month_of_Ldonation.clear();
-                      // month_of_Fdonation.clear();
-                      // //made_donation.clear();
-                      // no_of_dtns.clear();
-                      // total_donations.clear();
-                      // //month_of_donation.clear();
-                      // Donor_no.clear();
-                      // blood_donated.clear();
+                      month_of_Ldonation.clear();
+                      month_of_Fdonation.clear();
+                      //made_donation.clear();
+                      no_of_dtns.clear();
+                      total_donations.clear();
+                      //month_of_donation.clear();
+                      Donor_no.clear();
+                      blood_donated.clear();
 
-                      // await Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (BuildContext context) {
-                      //     return const Request_page();
-                      //   }),
-                      // );
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const Request_page();
+                        }),
+                      );
                     },
                   )),
             ],

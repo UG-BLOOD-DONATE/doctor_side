@@ -356,7 +356,7 @@ class _Request_pageState extends State<Request_page> {
                                   Icon(Icons.assistant_navigation,
                                       color: Colors.red, size: 40.0),
                                   Text(
-                                    'Assistant',
+                                    'Statistics',
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),

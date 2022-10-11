@@ -1,5 +1,6 @@
 //import 'package:alan_voice/alan_voice.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dialogflow_grpc/generated/google/protobuf/struct.pb.dart';
 import 'package:ug_blood_donate/models/user_model.dart';
 import 'package:ug_blood_donate/screens/create_event.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class _Request_pageState extends State<Request_page> {
     //   debugPrint("got new command ${command.toString()}");
     // });
   }
+  @override
   void initState() {
     super.initState();
     FirebaseFirestore.instance
@@ -48,9 +50,10 @@ class _Request_pageState extends State<Request_page> {
         .doc(user!.uid)
         .get()
         .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
-      //print('hi user');
-      setState(() {});
+      print('hi user');
+      setState(() {
+        loggedInUser = UserModel.fromMap(value.data());
+      });
     });
   }
 

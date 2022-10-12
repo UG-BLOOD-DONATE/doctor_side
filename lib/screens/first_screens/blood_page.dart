@@ -353,7 +353,7 @@ class _Request_pageState extends State<Request_page> {
                               padding: const EdgeInsets.symmetric(vertical: 32),
                               child: Column(
                                 children: const [
-                                  Icon(Icons.assistant_navigation,
+                                  Icon(Icons.bar_chart,
                                       color: Colors.red, size: 40.0),
                                   Text(
                                     'Statistics',

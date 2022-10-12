@@ -22,7 +22,7 @@ class HistoryScanner extends StatelessWidget {
               builder: (context) => const QRViewExample(),
             ));
           },
-          child: const Text('qrView'),
+          child: const Text('user history'),
         ),
       ),
     );
@@ -70,11 +70,12 @@ class _QRViewExampleState extends State<QRViewExample> {
                       margin: const EdgeInsets.all(8),
                       child: ElevatedButton(
                         onPressed: () {
+                          String? ui = result!.code;
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (BuildContext context) {
                               return History(
-                                my_id: result!.toString(),
+                                my_id: ui,
                               );
                             }),
                           );

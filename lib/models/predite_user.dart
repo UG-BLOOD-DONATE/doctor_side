@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api
+// ignore_for_file: depend_on_referenced_packages, library_private_types_in_public_api, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
@@ -8,11 +8,11 @@ class PredModel extends StatefulWidget {
   final String monthSinceLdonation;
   final String monthSinceFdonation;
   final String donorNo;
-  //String blood_donated,
   final String madeDonation;
   final String noOfDtns;
   PredModel(
-      {required this.totalVolumnDonated,
+      {super.key,
+      required this.totalVolumnDonated,
       required this.monthSinceLdonation,
       required this.monthSinceFdonation,
       required this.donorNo,
@@ -59,29 +59,29 @@ class _PredModelState extends State<PredModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 243, 33, 128),
+        backgroundColor: const Color.fromARGB(255, 243, 33, 128),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Posibility of donor to donate next month.",
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             MaterialButton(
-              color: Color.fromARGB(255, 243, 33, 128),
-              child: Text(
+              color: const Color.fromARGB(255, 243, 33, 128),
+              onPressed: predData,
+              child: const Text(
                 "predict",
                 style: TextStyle(fontSize: 25),
               ),
-              onPressed: predData,
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Text(
               "Predicted value :  $predValue ",
-              style: TextStyle(color: Colors.red, fontSize: 23),
+              style: const TextStyle(color: Colors.red, fontSize: 23),
             ),
           ],
         ),

@@ -70,7 +70,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                       margin: const EdgeInsets.all(8),
                       child: ElevatedButton(
                         onPressed: () {
-                          var ui = result!;
+                          String? ui = result!.code;
                           print(ui);
                           Navigator.push(
                             context,

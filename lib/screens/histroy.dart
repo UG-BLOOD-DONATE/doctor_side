@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 // Create a Form widget.
 class History extends StatefulWidget {
-  Barcode my_id;
+  String? my_id;
   History({Key? key, required this.my_id}) : super(key: key);
 
   @override

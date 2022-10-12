@@ -1,5 +1,6 @@
 import 'package:bottom_bar_with_sheet/bottom_bar_with_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:ug_blood_donate/screens/Blood_group_stat.dart';
 import 'package:ug_blood_donate/screens/create_event.dart';
 import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
 import 'package:ug_blood_donate/screens/updateHistory.dart';
@@ -33,10 +34,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int index = 0;
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
   final screens = [
-    Request_page(),
-    CreateEvent(),
+    const Request_page(),
+    const CreateEvent(),
     UserNotification(),
-    HistoryScanner(),
+    const HistoryScanner(),
   ];
   @override
   void initState() {
@@ -65,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             fontSize: 10.0,
           ),
           selectedItemTextStyle: TextStyle(
-            color: const Color.fromARGB(255, 182, 2, 2),
+            color: Color.fromARGB(255, 182, 2, 2),
             fontSize: 10.0,
           ),
         ),
@@ -80,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
           //   ),
           // );
         }, //debugPrint('$index'),
-        sheetChild: Center(
-          child: Text(
+        sheetChild: Column(children: [
+          Text(
             "Another content",
             style: TextStyle(
               color: Colors.grey[600],
@@ -89,7 +90,27 @@ class _MyHomePageState extends State<MyHomePage> {
               fontWeight: FontWeight.w900,
             ),
           ),
-        ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return B_G_stat();
+                  }),
+                );
+              },
+              child: Text(
+                "Blood stat:",
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ),
+        ]),
         items: const [
           BottomBarWithSheetItem(icon: Icons.home),
           BottomBarWithSheetItem(icon: Icons.create_new_folder),

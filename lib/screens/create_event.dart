@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:ug_blood_donate/components/bottom_navigation_bar.dart';
 
 const String myhomepageRoute = '/';
 const String myprofileRoute = 'profile';
@@ -97,6 +98,18 @@ class _MyHomePageState extends State<MyHomePage> {
         FirebaseFirestore.instance.collection('create_event');
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          color: Colors.black,
+          iconSize: 24.0,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BaseBar(),
+                ));
+          },
+          icon: const Icon(Icons.navigate_before_sharp),
+        ),
         backgroundColor: Color.fromARGB(234, 239, 52, 83),
         title: Text("Create Events"),
         centerTitle: true,

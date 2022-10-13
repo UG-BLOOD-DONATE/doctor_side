@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ug_blood_donate/components/bottom_navigation_bar.dart';
 import 'package:ug_blood_donate/components/custom_card.dart';
 import 'package:ug_blood_donate/components/custom_image.dart';
 import 'package:ug_blood_donate/models/user_model.dart';
@@ -20,6 +21,18 @@ class _FindDonorState extends State<FindDonor> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          color: Colors.black,
+          iconSize: 24.0,
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const BaseBar(),
+                ));
+          },
+          icon: const Icon(Icons.navigate_before_sharp),
+        ),
         title: Text("Find Donors"),
         centerTitle: true,
       ),

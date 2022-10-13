@@ -113,6 +113,26 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
           ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {
+                    return const HistoryScanner();
+                  }),
+                );
+              },
+              child: Text(
+                "History :",
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ),
         ]),
         items: const [
           BottomBarWithSheetItem(icon: Icons.home),

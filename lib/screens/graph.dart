@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
@@ -21,15 +23,39 @@ class _MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<_MyHomePage> {
-  List<_SalesData> data = [
-    _SalesData('O', 35),
-    _SalesData('AB', 28),
-    _SalesData('B', 34),
-    _SalesData('A', 32),
-    _SalesData('B', 40)
-  ];
+  String O = '';
+  String A = '';
+  String B = '';
+  String AB = '';
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("Blood_stat")
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get()
+        .then((value) {
+      //print('hi user');
+      if (value.exists) {
+        setState(() {
+          O = value.data()!["O"];
+          A = value.data()!["A"];
+          AB = value.data()!["AB"];
+          B = value.data()!["B"];
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<_SalesData> data = [
+      _SalesData('O', int.parse(O)),
+      _SalesData('AB', int.parse(AB)),
+      _SalesData('B', int.parse(B)),
+      _SalesData('A', int.parse(A)),
+    ];
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 194, 10, 172),
@@ -73,7 +99,7 @@ class _MyHomePageState extends State<_MyHomePage> {
                 labelDisplayMode: SparkChartLabelDisplayMode.all,
                 xValueMapper: (int index) => data[index].bloodtypes,
                 yValueMapper: (int index) => data[index].no_of_donors,
-                dataCount: 5,
+                dataCount: 4,
               ),
             ),
           )
@@ -85,5 +111,5 @@ class _SalesData {
   _SalesData(this.bloodtypes, this.no_of_donors);
 
   final String bloodtypes;
-  final double no_of_donors;
+  final int no_of_donors;
 }

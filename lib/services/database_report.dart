@@ -12,7 +12,7 @@ class DatabaseService {
   final CollectionReference myDoc =
       FirebaseFirestore.instance.collection('Doc_hospital');
   final CollectionReference bloodStat =
-      FirebaseFirestore.instance.collection('Blood stat');
+      FirebaseFirestore.instance.collection('Blood_stat');
 
   Future<void> updateUserRepost(
     String glucose,

@@ -272,7 +272,7 @@ class _LoginScreenState extends State<LoginScreen> {
             print("user in");
           }
         });
-        Navigator.pushReplacement(
+        Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => BaseBar(),

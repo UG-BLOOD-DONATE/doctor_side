@@ -130,6 +130,41 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 Container(
+                  color: Colors.lightBlueAccent,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/Blood-Donation.jpg',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      Text(
+                        'Find Blood Donors',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 242, 247, 246),
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 44,
+                      ),
+                      const Text(
+                        'Locate a blood donor nearby',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 250, 248, 248),
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
                   color: const Color.fromARGB(255, 8, 203, 34),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -318,7 +353,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     AnimatedSmoothIndicator(
                       activeIndex: controller.currentPage,
-                      count: 3,
+                      count: 4,
                       effect: WormEffect(
                         spacing: 16,
                         dotColor: Colors.black26,

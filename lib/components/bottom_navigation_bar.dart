@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomBarWithSheetItem(icon: Icons.home),
           BottomBarWithSheetItem(icon: Icons.create_new_folder),
           BottomBarWithSheetItem(icon: Icons.circle_notifications),
-          BottomBarWithSheetItem(icon: Icons.qr_code),
+          BottomBarWithSheetItem(icon: Icons.person),
         ],
       ),
     );

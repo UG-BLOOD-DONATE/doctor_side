@@ -6,6 +6,8 @@ import 'package:ug_blood_donate/screens/first_screens/blood_page.dart';
 import 'package:ug_blood_donate/screens/updateHistory.dart';
 import 'package:ug_blood_donate/screens/user_req.dart';
 
+import '../screens/map/Doctor_profile.dart';
+
 class BaseBar extends StatelessWidget {
   const BaseBar({Key? key}) : super(key: key);
 
@@ -37,7 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const Request_page(),
     const CreateEvent(),
     UserNotification(),
-    const HistoryScanner(),
+    ProfilePage(),
+    // const HistoryScanner(),
   ];
   @override
   void initState() {

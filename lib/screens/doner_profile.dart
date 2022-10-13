@@ -10,6 +10,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:ug_blood_donate/components/bottom_navigation_bar.dart';
 import 'package:ug_blood_donate/models/predite_user.dart';
 
 class DonerProfilePage extends StatefulWidget {
@@ -62,11 +63,11 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
-          return Text("Document does not exist");
+          return const Text("Document does not exist");
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
@@ -87,30 +88,28 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 snapshot.data!.docs.map((doc) {
-                  totalVolumnDonated = doc['totalVolumnDonated'];
-                  monthSinceLdonation = doc['monthSinceLdonation'];
-                  monthSinceFdonation = doc['monthSinceFdonation'];
-                  donorNo = doc['donorNo'];
-                  //String blood_donated,
-                  madeDonation = doc['madeDonation'];
-                  noOfDtns = doc['noOfDtns'];
-
-                  // prob = PredModel(
-                  //   donorNo: donorNo,
-                  //   madeDonation: madeDonation,
-                  //   monthSinceFdonation: monthSinceFdonation,
-                  //   monthSinceLdonation: monthSinceLdonation,
-                  //   noOfDtns: noOfDtns,
-                  //   totalVolumnDonated: totalVolumnDonated,
-                  // ).predData();
+                  totalVolumnDonated = doc['total_volumn_donated'];
+                  monthSinceLdonation = doc['month_since_Ldonation'];
+                  monthSinceFdonation = doc['month_since_Fdonation'];
+                  donorNo = doc['Donor_no'];
+                  madeDonation = doc['made_donation'];
+                  noOfDtns = doc['no_of_dtns'];
+                  // print('${total_volumn_donations}');
                 });
               }
               return Scaffold(
                   appBar: AppBar(
-                    leading: const Icon(
-                      Icons.navigate_before_sharp,
+                    leading: IconButton(
                       color: Colors.black,
-                      size: 24.0,
+                      iconSize: 24.0,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const BaseBar(),
+                            ));
+                      },
+                      icon: const Icon(Icons.navigate_before_sharp),
                     ),
                     title: const Text("Find Donors"),
                     centerTitle: true,
@@ -145,8 +144,8 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.location_on, color: Colors.pink),
-                          Text("${loc}"),
+                          const Icon(Icons.location_on, color: Colors.pink),
+                          Text(loc),
                         ],
                       ),
                     ),
@@ -168,14 +167,14 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                             Positioned(
                                 child: Row(
                               children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0),
+                                const Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10.0),
                                 ),
                                 // ignore: prefer_const_constructors
                                 Text(
-                                  "${noOfDtns}",
-                                  style: new TextStyle(
+                                  'null', // noOfDtns,
+                                  style: const TextStyle(
                                     color: Colors.pink,
                                     fontSize: 20,
                                   ),
@@ -195,7 +194,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                             // ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Column(
@@ -210,21 +209,21 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                             Positioned(
                               child: Row(
                                 children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10.0),
                                   ),
                                   // ignore: prefer_const_constructors
                                   Text(
                                     "Blood Type",
-                                    style: new TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
                                     ),
                                   ),
                                   Text(
-                                    " ${blood}",
-                                    style: TextStyle(
+                                    blood,
+                                    style: const TextStyle(
                                       color: Colors.pink,
                                       fontSize: 20,
                                     ),
@@ -236,7 +235,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 25,
                     ),
                     Row(
@@ -262,7 +261,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                                       style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all<Color>(
-                                                Color.fromARGB(
+                                                const Color.fromARGB(
                                                     150, 27, 158, 163)),
                                         shape: MaterialStateProperty.all(
                                           RoundedRectangleBorder(
@@ -328,7 +327,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                     new Container(
                       height: 350,
                       width: 200,
-                      padding: EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Stack(
                         children: <Widget>[
                           GoogleMap(
@@ -337,13 +336,13 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                             },
                             compassEnabled: true,
                             mapType: MapType.hybrid,
-                            initialCameraPosition: CameraPosition(
+                            initialCameraPosition: const CameraPosition(
                                 tilt: 9.0,
                                 target: LatLng(0.339535, 32.571199),
                                 zoom: 10.5),
                             markers: {
-                              Marker(
-                                markerId: const MarkerId("currentLocation"),
+                              const Marker(
+                                markerId: MarkerId("currentLocation"),
                                 position: LatLng(0.339535, 32.571199),
                               ),
                             },

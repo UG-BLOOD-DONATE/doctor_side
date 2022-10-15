@@ -9,6 +9,7 @@ import 'package:ug_blood_donate/components/custom_card.dart';
 import 'package:ug_blood_donate/screens/create_event.dart';
 import 'package:ug_blood_donate/screens/find_donor.dart';
 import 'package:ug_blood_donate/screens/graph.dart';
+import 'package:ug_blood_donate/screens/map/order_traking_page.dart';
 import 'package:ug_blood_donate/screens/onboarding_screens.dart';
 import 'package:ug_blood_donate/screens/qr_scanner.dart';
 import 'package:ug_blood_donate/models/predite_user.dart';
@@ -367,39 +368,46 @@ class _Request_pageState extends State<Request_page> {
                         ),
                         Expanded(
                           flex: 1,
-                          child: Card(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                //color: const Color.fromARGB(255, 243, 248, 247),
-                                borderRadius: BorderRadius.circular(50.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color:
-                                        const Color.fromARGB(255, 255, 254, 254)
-                                            .withOpacity(0.5),
-                                    spreadRadius: 20,
-                                    blurRadius: 7,
-                                    offset: const Offset(
-                                        0, 3), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 32.0, horizontal: 4.0),
-                              child: Column(
-                                children: const [
-                                  Icon(
-                                    Icons.map_outlined,
-                                    color: Colors.red,
-                                    size: 40.0,
-                                  ),
-                                  Text(
-                                    'Map',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) {
+                              return GeofencePage();
+                            })),
+                            child: Card(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  //color: const Color.fromARGB(255, 243, 248, 247),
+                                  borderRadius: BorderRadius.circular(50.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: const Color.fromARGB(
+                                              255, 255, 254, 254)
+                                          .withOpacity(0.5),
+                                      spreadRadius: 20,
+                                      blurRadius: 7,
+                                      offset: const Offset(
+                                          0, 3), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 32.0, horizontal: 4.0),
+                                child: Column(
+                                  children: const [
+                                    Icon(
+                                      Icons.map_outlined,
+                                      color: Colors.red,
+                                      size: 40.0,
+                                    ),
+                                    Text(
+                                      'Map',
+                                      style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

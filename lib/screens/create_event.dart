@@ -4,7 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+<<<<<<< Updated upstream
+=======
 import 'package:ug_blood_donate/components/bottom_navigation_bar.dart';
+import 'package:ug_blood_donate/screens/map/order_traking_page.dart';
+>>>>>>> Stashed changes
 
 const String myhomepageRoute = '/';
 const String myprofileRoute = 'profile';
@@ -98,18 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
         FirebaseFirestore.instance.collection('create_event');
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          color: Colors.black,
-          iconSize: 24.0,
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const BaseBar(),
-                ));
-          },
-          icon: const Icon(Icons.navigate_before_sharp),
-        ),
         backgroundColor: Color.fromARGB(234, 239, 52, 83),
         title: Text("Create Events"),
         centerTitle: true,
@@ -135,32 +127,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    TextFormField(
-                      controller: location,
-                      decoration: const InputDecoration(
-                          icon: Icon(
-                            Icons.location_on_rounded,
-                            color: Color.fromARGB(234, 239, 52, 83),
-                          ),
-                          labelText: 'Location',
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20.0)),
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 0.0),
-                          ),
-                          border: OutlineInputBorder()),
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length < 3) {
-                          return 'location must contain at least 3 characters';
-                        } else if (value
-                            .contains(RegExp(r'^[0-9_\-=@,\.;]+$'))) {
-                          return 'location cannot contain special characters';
-                        }
-                      },
-                    ),
+                    // TextFormField(
+                    //   controller: location,
+                    //   decoration: const InputDecoration(
+                    //       icon: Icon(
+                    //         Icons.location_on_rounded,
+                    //         color: Color.fromARGB(234, 239, 52, 83),
+                    //       ),
+                    //       labelText: 'Location',
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderRadius:
+                    //             BorderRadius.all(Radius.circular(20.0)),
+                    //         borderSide:
+                    //             BorderSide(color: Colors.grey, width: 0.0),
+                    //       ),
+                    //       border: OutlineInputBorder()),
+                    //   validator: (value) {
+                    //     if (value == null ||
+                    //         value.isEmpty ||
+                    //         value.length < 3) {
+                    //       return 'location must contain at least 3 characters';
+                    //     } else if (value
+                    //         .contains(RegExp(r'^[0-9_\-=@,\.;]+$'))) {
+                    //       return 'location cannot contain special characters';
+                    //     }
+                    //   },
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -171,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Icons.home,
                             color: Color.fromARGB(234, 239, 52, 83),
                           ),
-                          labelText: 'Hospital',
+                          labelText: 'Hospital/Organisation',
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(20.0)),
@@ -248,10 +240,29 @@ class _MyHomePageState extends State<MyHomePage> {
                     const SizedBox(
                       height: 20,
                     ),
+                    ElevatedButton(
+                      //color: Color.fromARGB(234, 239, 52, 83),
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (BuildContext context) {
+                          return GeofencePage();
+                        }));
+                      },
+                      child: const Center(child: Text("Set Location ")),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.pink),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                        ),
+                      ),
+                    ),
                     //
-                    // const SizedBox(
-                    //   height: 20,
-                    // ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     // DropdownButtonFormField(
                     //     decoration: const InputDecoration(
                     //         enabledBorder: OutlineInputBorder(

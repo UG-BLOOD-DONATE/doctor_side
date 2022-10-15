@@ -45,5 +45,16 @@
 	<false/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSBonjourServices</key>
+    <array>
+    <string>_dartobservatory._tcp</string>
+    </array>
+	<key>NSLocationAlwaysUsageDescription</key>
+    <string>I want to get your location Information in background</string>
+
+     <key>UIBackgroundModes</key>
+     <array>
+    <string>location</string>
+    </array>
 </dict>
 </plist>

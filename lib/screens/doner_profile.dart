@@ -189,14 +189,14 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                             ),
                             // ignore: prefer_const_constructors
                             Text(
-                              'null', // noOfDtns,
+                              noOfDtns,
                               style: const TextStyle(
                                 color: Colors.pink,
                                 fontSize: 20,
                               ),
                             ),
                             const Text(
-                              " Times donated",
+                              " Time/s donated",
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 20,
@@ -230,7 +230,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                               ),
                               // ignore: prefer_const_constructors
                               Text(
-                                "Blood Type",
+                                "Blood Type ",
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: 20,

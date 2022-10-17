@@ -4,11 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-<<<<<<< Updated upstream
-=======
 import 'package:ug_blood_donate/components/bottom_navigation_bar.dart';
 import 'package:ug_blood_donate/screens/map/order_traking_page.dart';
->>>>>>> Stashed changes
 
 const String myhomepageRoute = '/';
 const String myprofileRoute = 'profile';

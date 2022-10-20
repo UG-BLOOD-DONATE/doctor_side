@@ -75,8 +75,8 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
   }
 
 //Making a phonecall
-  _makingPhoneCall() async {
-    var url = Uri.parse("tel:9776765434");
+  _makingPhoneCall(phone_number) async {
+    var url = Uri.parse("tel:$phone_number");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -282,7 +282,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                                   ),
                                   label: const Text('Call Now'),
                                   onPressed: () {
-                                    print('Pressed');
+                                    _makingPhoneCall(num);
                                   },
                                   style: ButtonStyle(
                                     backgroundColor:

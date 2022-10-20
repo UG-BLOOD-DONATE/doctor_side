@@ -99,6 +99,19 @@ class _MyHomePageState extends State<MyHomePage> {
         FirebaseFirestore.instance.collection('create_event');
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          color: Colors.black,
+          iconSize: 24.0,
+          onPressed: () {
+            Navigator.pop(context);
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const BaseBar(),
+            //     ));
+          },
+          icon: const Icon(Icons.navigate_before_sharp),
+        ),
         backgroundColor: Color.fromARGB(234, 239, 52, 83),
         title: Text("Create Events"),
         centerTitle: true,

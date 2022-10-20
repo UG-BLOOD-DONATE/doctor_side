@@ -62,12 +62,11 @@ class DatabaseService {
 
   Future<void> updateDonorHistory(
     String totalVolumnDonated,
+    String noOfDtns,
     String monthSinceLdonation,
     String monthSinceFdonation,
     String donorNo,
-    //String blood_donated,
     String madeDonation,
-    String noOfDtns,
   ) async {
     return await myhistory.doc(uid).set({
       'total_volumn_donated': totalVolumnDonated,

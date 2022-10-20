@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:ug_blood_donate/components/bottom_navigation_bar.dart';
 
 class ChartApp extends StatelessWidget {
   @override
@@ -58,6 +59,18 @@ class _MyHomePageState extends State<_MyHomePage> {
     ];
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            color: Colors.black,
+            iconSize: 24.0,
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const BaseBar(),
+                  ));
+            },
+            icon: const Icon(Icons.navigate_before_sharp),
+          ),
           backgroundColor: Color.fromARGB(255, 194, 10, 172),
           title: const Text('Syncfusion Flutter chart'),
         ),

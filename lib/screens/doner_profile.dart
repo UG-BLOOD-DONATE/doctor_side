@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
@@ -71,6 +72,16 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
         });
       }
     });
+  }
+
+//Making a phonecall
+  _makingPhoneCall() async {
+    var url = Uri.parse("tel:9776765434");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -148,7 +159,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          '                ${name}',
+                          '                   ${name}',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 25),
                         ),

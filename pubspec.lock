@@ -1100,7 +1100,7 @@ packages:
     source: hosted
     version: "1.1.2"
   tflite_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: tflite_flutter
       url: "https://pub.dartlang.org"

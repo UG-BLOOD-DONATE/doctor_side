@@ -72,7 +72,7 @@ class _MyHomePageState extends State<_MyHomePage> {
             icon: const Icon(Icons.navigate_before_sharp),
           ),
           backgroundColor: Color.fromARGB(255, 194, 10, 172),
-          title: const Text('Syncfusion Flutter chart'),
+          title: const Text('Donation chart'),
         ),
         body: Column(children: [
           //Initialize the chart widget

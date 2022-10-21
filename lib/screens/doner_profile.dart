@@ -41,7 +41,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
   var madeDonation;
   var noOfDtns;
   final db = FirebaseFirestore.instance;
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  // CollectionReference users = FirebaseFirestore.instance.collection('users');
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -97,45 +97,31 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<DocumentSnapshot>(
-        future: users.doc(widget.documentId).get(),
-        builder:
-            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return const Text("Something went wrong");
-          }
+    // return FutureBuilder<DocumentSnapshot>(
+    //     future: users.doc(widget.documentId).get(),
+    //     builder:
+    //         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+    //       if (snapshot.hasError) {
+    //         return const Text("Something went wrong");
+    //       }
 
-          if (snapshot.hasData && !snapshot.data!.exists) {
-            return const Text("Document does not exist");
-          }
+    //       if (snapshot.hasData && !snapshot.data!.exists) {
+    //         return const Text("Document does not exist");
+    //       }
 
-          if (snapshot.connectionState == ConnectionState.done) {
-            Map<String, dynamic> data =
-                snapshot.data!.data() as Map<String, dynamic>;
-            name = data['fullname'];
-            blood = data['bloodType'];
-            loc = data['location'];
-            pic = data['photoURL'];
-            num = data['phonenumber'];
+    //       if (snapshot.connectionState == ConnectionState.done) {
+    //         Map<String, dynamic> data =
+    //             snapshot.data!.data() as Map<String, dynamic>;
+    //         name = data['fullname'];
+    //         blood = data['bloodType'];
+    //         loc = data['location'];
+    //         pic = data['photoURL'];
+    //         num = data['phonenumber'];
 
-            //return Text("Full Name: ${data['full_name']} ${data['last_name']}");
-          }
+    //         //return Text("Full Name: ${data['full_name']} ${data['last_name']}");
+    //       }
 
-          //return Text("loading");
-          // return StreamBuilder<QuerySnapshot>(
-          //     stream: db.collection('histroy').snapshots(),
-          //     builder: (context, snapshot) {
-          //       if (snapshot.hasData) {
-          //         snapshot.data!.docs.map((doc) {
-          // totalVolumnDonated = doc['total_volumn_donated'];
-          // monthSinceLdonation = doc['month_since_Ldonation'];
-          // monthSinceFdonation = doc['month_since_Fdonation'];
-          // donorNo = doc['Donor_no'];
-          // madeDonation = doc['made_donation'];
-          // noOfDtns = doc['no_of_dtns'];
-          //           // print('${total_volumn_donations}');
-          //         });
-          //       }
+         
           return Scaffold(
               appBar: AppBar(
                 leading: IconButton(
@@ -386,7 +372,7 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
                   ),
                 ),
               ]));
-        });
+        
     //   },
     // );
   }

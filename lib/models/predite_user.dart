@@ -26,23 +26,36 @@ class PredModel extends StatefulWidget {
 }
 
 class _PredModelState extends State<PredModel> {
-  var predValue = "";
+  var predValue;
+  var donorNo;
+  var monthSinceLdonation;
+  var noOfDtns;
+  var totalVolumnDonated;
+  var monthSinceFdonation;
+  var madeDonation;
+
   @override
   void initState() {
     super.initState();
-    predValue = "click predict button";
+    predValue = 0; //"click predict button";
+    donorNo = widget.donorNo;
+    monthSinceLdonation = widget.monthSinceLdonation;
+    noOfDtns = widget.noOfDtns;
+    totalVolumnDonated = widget.totalVolumnDonated;
+    monthSinceFdonation = widget.monthSinceFdonation;
+    madeDonation = widget.madeDonation;
   }
 
   Future<String> predData() async {
     final interpreter = await Interpreter.fromAsset('prediction_model.tflite');
     var input = [
       [
-        double.parse(widget.donorNo),
-        double.parse(widget.monthSinceLdonation),
-        double.parse(widget.noOfDtns),
-        double.parse(widget.totalVolumnDonated),
-        double.parse(widget.monthSinceFdonation),
-        double.parse(widget.madeDonation)
+        double.parse(donorNo),
+        double.parse(monthSinceLdonation),
+        double.parse(noOfDtns),
+        double.parse(totalVolumnDonated),
+        double.parse(monthSinceFdonation),
+        double.parse(madeDonation)
       ]
     ];
     var output = List.filled(1, 0).reshape([1, 1]);
@@ -50,9 +63,9 @@ class _PredModelState extends State<PredModel> {
     print(output[0][0]);
 
     setState(() {
-      predValue = output[0][0].toString();
+      predValue = output[0][0]; //.toString();
     });
-    return predValue;
+    return predValue * 100.round();
   }
 
   @override
@@ -79,14 +92,32 @@ class _PredModelState extends State<PredModel> {
               ),
             ),
             const SizedBox(height: 12),
-            Text(
-              "Predicted value :  $predValue \n\n ",
-              style: const TextStyle(color: Colors.blue, fontSize: 23),
-            ),
-            Text(
-              "if the pobability is higher than 0.5 then the donor has higher pobabilitychances of donating next month",
-              style: const TextStyle(color: Colors.red, fontSize: 23),
-            ),
+            predValue >= 0.5
+                ? Text(
+                    "Higher chances of donating:${predValue * 100.round()} %  ",
+                    style: const TextStyle(color: Colors.blue, fontSize: 23),
+                  )
+                : Text(
+                    "lower chances of donating:${predValue * 100.round()} %  ",
+                    style: const TextStyle(color: Colors.red, fontSize: 23),
+                  ),
+            const SizedBox(height: 12),
+            // Container(
+            //     child: int.parse(predValue) > 0.5
+            //         ? Text(
+            //             "Likely  to donate blood at :${predValue}/1  ",
+            //             style:
+            //                 const TextStyle(color: Colors.blue, fontSize: 23),
+            //           )
+            //         : Text(
+            //             "Unlikely to donate blood at :${predValue}/1  ",
+            //             style:
+            //                 const TextStyle(color: Colors.blue, fontSize: 23),
+            //           )),
+            // const Text(
+            //   "if the pobability is higher than 0.5 then the donor has higher pobabilitychances of donating next month",
+            //   style: TextStyle(color: Colors.red, fontSize: 23),
+            // ),
           ],
         ),
       ),

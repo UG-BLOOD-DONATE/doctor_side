@@ -16,7 +16,8 @@ class _FindDonorState extends State<FindDonor> {
   final db = FirebaseFirestore.instance;
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
-
+  final Stream<QuerySnapshot> _usersStream =
+      FirebaseFirestore.instance.collection('users').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +34,14 @@ class _FindDonorState extends State<FindDonor> {
           },
           icon: const Icon(Icons.navigate_before_sharp),
         ),
-        title: Text("Find Donors"),
+        title: const Text("Find Donors"),
         centerTitle: true,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: db.collection('users').snapshots(),
-        builder: (context, snapshot) {
+        stream: _usersStream, //db.collection('users').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (!snapshot.hasData) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {

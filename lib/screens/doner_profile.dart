@@ -72,6 +72,22 @@ class _DonerProfilePageState extends State<DonerProfilePage> {
         });
       }
     });
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(widget.documentId)
+        .get()
+        .then((value) {
+      //print('hi user');
+      if (value.exists) {
+        setState(() {
+          name = value.data()!['fullname'];
+          blood = value.data()!['bloodType'];
+          loc = value.data()!['location'];
+          pic = value.data()!['photoURL'];
+          num = value.data()!['phonenumber'];
+        });
+      }
+    });
   }
 
 //Making a phonecall

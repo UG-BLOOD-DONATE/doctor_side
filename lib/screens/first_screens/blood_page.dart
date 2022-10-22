@@ -56,6 +56,12 @@ class _Request_pageState extends State<Request_page> {
         loggedInUser = UserModel.fromMap(value.data());
       });
     });
+    var users = FirebaseAuth.instance.authStateChanges().listen((users) {
+      if (users == null) {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => OnboardingScreen()));
+      } else {}
+    });
   }
 
   TextEditingController location = TextEditingController();

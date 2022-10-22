@@ -20,19 +20,19 @@ class BaseBar extends StatelessWidget {
           color: Color.fromARGB(255, 182, 2, 2),
         ),
       ),
-      home: const MyHomePage(),
+      home: const My_HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class My_HomePage extends StatefulWidget {
+  const My_HomePage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _My_HomePageState createState() => _My_HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _My_HomePageState extends State<My_HomePage> {
   int index = 0;
   final _bottomBarController = BottomBarWithSheetController(initialIndex: 0);
   final screens = [
